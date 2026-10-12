@@ -8,28 +8,23 @@ namespace Kassasystem.inlämning.Priser_och_produkter
     {
         public static void Skapakvitto(List<Varukorg> korg)
         {
-            string namnpåkvittot = $"RECEIPT_{DateTime.Now: yyyyMMdd}.txt";
+            string namnpåkvittot = $"RECEIPT_{DateTime.Now:yyyyMMdd}.txt";
             StringBuilder onkvittot = new StringBuilder();
-            Console.WriteLine("Denise´s MiniLivs");
+            onkvittot.AppendLine("Denise´s MiniLivs");
             onkvittot.AppendLine("===========================");
             onkvittot.AppendLine($"Datum : {DateTime.Now}");
             onkvittot.AppendLine("===========================");
+            onkvittot.AppendLine("Produkt | Antal | Enhet | Pris ");
+       
             double totalapriset = 0;
             foreach (var i in korg)
             {
-                totalapriset += i.Produktlista.pris * i.Varumägnd;
-            }
-
-            Console.WriteLine($"Den totala summan är: {totalapriset} kr");
-
-
-            foreach (var i in korg)
-            {
                 double row = i.Produktlista.pris * i.Varumägnd;
-                onkvittot.AppendLine($"{i.Produktlista.Namn} | {i.Varumägnd} | {i.Pristyp} |  ");
+                onkvittot.AppendLine($"{i.Produktlista.Namn} | {i.Varumägnd} | {i.Produktlista.Pristyp} | {row} ");
+                totalapriset += row;
             }
             onkvittot.AppendLine("===========================");
-            onkvittot.AppendLine($"Det totala priset för dina produkter och antalet är {totalapriset}");
+            onkvittot.AppendLine($"Totalt: {totalapriset} kr ");
             onkvittot.AppendLine("============= KVITTO ===========");
             Console.WriteLine(onkvittot.ToString());
             File.AppendAllText(namnpåkvittot, onkvittot.ToString() + Environment.NewLine + Environment.NewLine);
@@ -40,3 +35,4 @@ namespace Kassasystem.inlämning.Priser_och_produkter
     }
 }
                       
+
