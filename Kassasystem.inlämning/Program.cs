@@ -20,7 +20,7 @@ namespace Kassasystem.inlämning
 
             if (!File.Exists(fil))
             {
-                Console.WriteLine("Filen kunde inte hittas: ");
+                Console.WriteLine("Filen kunde inte hittas:");
                 Console.ReadKey();
                 return;
             }

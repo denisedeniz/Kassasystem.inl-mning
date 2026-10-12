@@ -32,32 +32,8 @@ namespace Kassasystem.inlämning.Priser_och_produkter
                             Console.WriteLine("Tryck på en knapp för att återvända till menyn");
                             break;
                         }
-                        double totalapriset = 0;
-                        foreach (var d in varukorgs)
-                        {
-                            totalapriset += d.Produktlista.pris * d.Varumägnd;
-                        }
-                        Console.WriteLine($"Den totala summan är: {totalapriset} kr");
-                        string namnpåkvittot = $"KVITTO_{DateTime.Now: yyyymmdd}.txt";
-                        StringBuilder påkvittot = new StringBuilder();
-                        Console.WriteLine("KÖP");
-                        påkvittot.AppendLine("========================");
-                        påkvittot.AppendLine($"Datum : {DateTime.Now}");
-                        påkvittot.AppendLine("========================");
-                        foreach (var d in varukorgs)
-                        {
-                            double radkvitto = d.Produktlista.pris * d.Varumägnd;
-                            påkvittot.AppendLine($"{d.Produktlista.Namn} | {d.Varumägnd}");
-                        }
-                        påkvittot.AppendLine("========================");
-                        påkvittot.AppendLine($"Det totala priset för produkterna och antalet är {totalapriset} kr");
-                        påkvittot.AppendLine("============= KVITTO ===========");
-                        Console.WriteLine(påkvittot.ToString());
-                        File.AppendAllText(namnpåkvittot, påkvittot.ToString() + Environment.NewLine + Environment.NewLine);
-                        Console.WriteLine("Försäljningen har avslutas. \n Tryck på valfri knapp för att återgå till huvudmenyn");
-                        Console.ReadKey();
-                        break;
-                    }
+                       
+                }
                     string[] Prader = input.Split(" ");
                     if (Prader.Length != 2)
                     {
