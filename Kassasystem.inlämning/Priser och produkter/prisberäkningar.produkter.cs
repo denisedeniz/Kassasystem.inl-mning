@@ -6,10 +6,6 @@ namespace Kassasystem.inlämning.Priser_och_produkter
 {
     public class prisberäkningar
     {
-
-       public  string ID = "123456789";
-        public string namn = "Bananer";
-      
         public static decimal PrisMoms(decimal pris)
         {
 

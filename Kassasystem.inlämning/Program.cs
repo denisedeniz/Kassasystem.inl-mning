@@ -1,42 +1,69 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using Kassasystem.inlämning.Priser_och_produkter;
+using Kassasystem.inlämning.SYS;
+using System;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+
 
 namespace Kassasystem.inlämning
 {
-    public class Produkt
+    internal class program
     {
-        public string ID { get; set; }
-        public string Namn { get; set; }
-        public double pris { get; set; }
-        public string Pristyp { get; set; }
+        static void Main(string[] args)
+        {
+            List<Produkt> produkters = new List<Produkt>();
+            List<Varukorg> varukorgs = new List<Varukorg>();
 
-        public Produkt(string id, string namn, double Pris, string pristyp)
-        {
-            ID = id;
-            Namn = namn;
-            pris = Pris;
-            Pristyp= pristyp;
-        }
-        public class program
-        {
-            static void Main(string[] args)
+            string fil = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "fil.txt");
+            Console.WriteLine($"Looking for data file at: {fil}");
+
+            if (!File.Exists(fil))
             {
-                List<Produkt> produkter = new List<Produkt>();
+                Console.WriteLine("Filen kunde inte hittas: ");
+                Console.ReadKey();
+                return;
+            }
+            try
+            {
+                foreach (string rad in File.ReadAllLines(fil))
                 {
-                    produkter.Add(new Produkt("1", "Bananer", 9.99, "Styck"));
-                    produkter.Add(new Produkt("2", "Apelsiner", 14.50, "kg"));
-                    produkter.Add(new Produkt("3", "Havremjölk 1 liter 3,0%", 23.50, "Styck"));
-                    produkter.Add(new Produkt("4", "Pappardelle", 18.67, "Styck"));
-                    produkter.Add(new Produkt("5", "Köttfärs 12% 1 kilo ", 128.80, "Styck"));
-                    produkter.Add(new Produkt("6", "Matlagningsgrädde 2,5dl 12%", 15.60, "Styck"));
-                    produkter.Add(new Produkt("7", "Potatis 2kg", 24.95, "kg"));
-                    produkter.Add(new Produkt("8", "kalaspuffar 450g", 71.44, "Styck"));
-                    produkter.Add(new Produkt("9", "Zoegas kaffe skånerost 450g", 79.00, "Styck"));
-                    produkter.Add(new Produkt("10", "Olw Smash", 32.60, "Styck"));
+                    string[] Prader = rad.Split(";");
+                    produkters.Add(new Produkt(int.Parse(Prader[0]), Prader[1], double.Parse(Prader[2]), Prader[3]));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error reading or parsing the data file: " + ex.Message);
+                Console.ReadKey();
+                return;
+            }
+            
+            bool körs = true;
+            while (true)
+            {
+                Meny.Start();
+                int valSiffra = InmatningsKoll.Valmojlighet(0, 2);
+
+                switch (valSiffra)
+                {
+                    case 1:
+                        Case.MenyCASE(varukorgs, produkters);
+                        Console.WriteLine("Välkommen, ett nytt köp har startats");
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Admin");
+                        break;
+
+                    case 0:
+                        Console.WriteLine("Programmet avslutas, ha det så bra!");
+                        return;
+
+
                 }
             }
         }
+
     }
 }
-        
-
-
