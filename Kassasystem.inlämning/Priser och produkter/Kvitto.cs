@@ -20,12 +20,14 @@ namespace Kassasystem.inlämning.Priser_och_produkter
             foreach (var i in korg)
             {
                 double row = i.Produktlista.pris * i.Varumägnd;
+                row = Math.Round(row, 2);
                 onkvittot.AppendLine($"{i.Produktlista.Namn} | {i.Varumägnd} | {i.Produktlista.Pristyp} | {row} ");
                 totalapriset += row;
             }
+
             onkvittot.AppendLine("===========================");
             onkvittot.AppendLine($"Totalt: {totalapriset} kr ");
-            onkvittot.AppendLine("Tack för ditt köp och välkomen åter");
+            onkvittot.AppendLine("Tack för ditt köp och välkommen åter");
             onkvittot.AppendLine("============= KVITTO ===========");
             Console.WriteLine(onkvittot.ToString());
             File.AppendAllText(namnpåkvittot, onkvittot.ToString() + Environment.NewLine + Environment.NewLine);

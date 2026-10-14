@@ -43,16 +43,19 @@ namespace Kassasystem.inlämning.Priser_och_produkter
                         continue;
                     }
                     if (!int.TryParse(Prader[0], out int IDprodukt) ||
-                    !int.TryParse(Prader[1], out int Vmängd) || Vmängd < 0)
+                    !double.TryParse(Prader[1], out double Vmängd) || Vmängd < 0)
                     {
                         Console.WriteLine("Fel val, försök igen");
                         continue;
                     }
+
+
                     bool körs = false;
                     foreach (var d in produkters)
                     {
                         if (d.ID == IDprodukt)
                         {
+                            
                             varukorgs.Add(new Varukorg(d, Vmängd));
                             Console.WriteLine($"{d.Namn} x {Vmängd} är tillagda i varukorgen");
 
