@@ -32,8 +32,10 @@ namespace Kassasystem.inlämning.Priser_och_produkter
                             Console.WriteLine("Tryck på en knapp för att återvända till menyn");
                             break;
                         }
-                       
-                }
+                    Kvitto.Skapakvitto(varukorgs);
+                        break;
+                    }
+
                     string[] Prader = input.Split(" ");
                     if (Prader.Length != 2)
                     {

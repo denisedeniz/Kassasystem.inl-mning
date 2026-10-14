@@ -25,6 +25,7 @@ namespace Kassasystem.inlämning.Priser_och_produkter
             }
             onkvittot.AppendLine("===========================");
             onkvittot.AppendLine($"Totalt: {totalapriset} kr ");
+            onkvittot.AppendLine("Tack för ditt köp och välkomen åter");
             onkvittot.AppendLine("============= KVITTO ===========");
             Console.WriteLine(onkvittot.ToString());
             File.AppendAllText(namnpåkvittot, onkvittot.ToString() + Environment.NewLine + Environment.NewLine);
