@@ -39,24 +39,31 @@ namespace Kassasystem.inlämning.Priser_och_produkter
                     string[] Prader = input.Split(" ");
                     if (Prader.Length != 2)
                     {
-                        Console.WriteLine("Fel inmatning, försök igen");
+                        Console.WriteLine("Produkten du har valt är inte tillgänlig");
                         continue;
                     }
                     if (!int.TryParse(Prader[0], out int IDprodukt) ||
-                    !double.TryParse(Prader[1], out double Vmängd) || Vmängd < 0)
+                    !double.TryParse(Prader[1], out double Vmängd) || Vmängd <= 0)
                     {
                         Console.WriteLine("Fel val, försök igen");
                         continue;
                     }
-
+                    
 
                     bool körs = false;
                     foreach (var d in produkters)
                     {
                         if (d.ID == IDprodukt)
                         {
+                        if (d.Pristyp == "Styck" && Vmängd != Math.Truncate(Vmängd))
+                        {
+                            Console.WriteLine("Styckvarorna måste anges endast i heltal, vänligen försök igen");
+                            continue;
+                        }
+                        {
                             
-                            varukorgs.Add(new Varukorg(d, Vmängd));
+                        }
+                        varukorgs.Add(new Varukorg(d, Vmängd));
                             Console.WriteLine($"{d.Namn} x {Vmängd} är tillagda i varukorgen");
 
                         double total = 0;
@@ -65,7 +72,7 @@ namespace Kassasystem.inlämning.Priser_och_produkter
                             Console.WriteLine($"{vara.Produktlista.Namn} x {vara.Varumägnd}");
                             total += vara.Produktlista.pris * vara.Varumägnd;
                         }
-                        Console.WriteLine($"Totalt blir det: {total} kr");
+                        Console.WriteLine($"Totalt blir det: {total} kr"); Console.WriteLine();
 
                         körs = true;
                             break;
@@ -77,7 +84,7 @@ namespace Kassasystem.inlämning.Priser_och_produkter
 
                     if (!körs)
                     {
-                        Console.WriteLine("Produkten du har valt är inte tillgänlig");
+                        Console.WriteLine("Fel inmatning försök igen");
                     }
 
                 }

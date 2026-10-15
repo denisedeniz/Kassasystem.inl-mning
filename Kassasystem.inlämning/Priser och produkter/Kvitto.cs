@@ -6,12 +6,18 @@ namespace Kassasystem.inlämning.Priser_och_produkter
 {
     public class Kvitto
     {
+        public static decimal PrisMoms(decimal pris)
+        {
+
+            return pris * 1.25m;
+
+        }
         public static void Skapakvitto(List<Varukorg> korg)
         {
             string namnpåkvittot = $"RECEIPT_{DateTime.Now:yyyyMMdd}.txt";
             StringBuilder onkvittot = new StringBuilder();
-            onkvittot.AppendLine("Denise´s MiniLivs");
-            onkvittot.AppendLine("===========================");
+            onkvittot.AppendLine(         "Denise´s MiniLivs"      );
+            onkvittot.AppendLine("============= KVITTO ===========");
             onkvittot.AppendLine($"Datum : {DateTime.Now}");
             onkvittot.AppendLine("===========================");
             onkvittot.AppendLine("Produkt | Antal | Enhet | Pris ");
@@ -21,7 +27,8 @@ namespace Kassasystem.inlämning.Priser_och_produkter
             {
                 double row = i.Produktlista.pris * i.Varumägnd;
                 row = Math.Round(row, 2);
-                onkvittot.AppendLine($"{i.Produktlista.Namn} | {i.Varumägnd} | {i.Produktlista.Pristyp} | {row} ");
+                var PrisMoms = prisberäkningar.PrisMoms(row);
+                onkvittot.AppendLine($"{i.Produktlista.Namn} | {i.Varumägnd} | {i.Produktlista.Pristyp} | {PrisMoms} ");
                 totalapriset += row;
             }
 

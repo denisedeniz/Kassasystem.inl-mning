@@ -10,7 +10,7 @@ namespace Kassasystem.inlämning.SYS
         //klass för att hantera inmatningar
         public static int Valmojlighet(int min, int max)
 
-            // valsiffra (1,4);
+            
         {
             while (true)
             {

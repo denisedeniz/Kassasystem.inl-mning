@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace Kassasystem.inlämning
 {
-    internal class program
+    internal class Program
     {
         static void Main(string[] args)
         {

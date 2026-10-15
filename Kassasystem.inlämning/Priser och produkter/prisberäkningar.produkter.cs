@@ -6,27 +6,27 @@ namespace Kassasystem.inlämning.Priser_och_produkter
 {
     public class prisberäkningar
     {
-        public static decimal PrisMoms(decimal pris)
+        public static double PrisMoms(double pris)
         {
 
-            return pris * 1.25m;
+            return pris * 1.25;
 
         }
 
-        public static decimal BPR(decimal pris, decimal rabattProcent)
+        public static double BPR(double pris, double rabattProcent)
         {
             if (rabattProcent < 0 || rabattProcent > 100)
             {
                 throw new ArgumentException(" Fel procent mängd angiven ");
 
             }
-            decimal efterrabatt = pris * (1 - rabattProcent / 100m);
+            double efterrabatt = pris * (1 - rabattProcent / 100);
             return efterrabatt;
 
         }
-        public static decimal BeraknaMomsbelopp(decimal prisExklusiveMoms)
+        public static double BeraknaMomsbelopp(double prisExklusiveMoms)
         {
-            return prisExklusiveMoms * 0.25m;
+            return prisExklusiveMoms * 0.25;
         }
 
     }

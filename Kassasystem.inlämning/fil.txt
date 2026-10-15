@@ -2,7 +2,7 @@
 502;Apelsiner;14,50;kg
 503;Havremjölk 1 liter 3,0%;23,50;Styck
 504;Pappardelle;18,67;Styck
-505;Köttfärs 12% 1 kilo;128,80;Styck
+505;Köttfärs 12% 1 kilo;128,80;kg
 506;Matlagningsgrädde 2,5dl 12%;15,60;Styck
 507;Potatis fast 2kg;24,95;kg
 508;Kalaspuffar 450g;71,44;Styck
